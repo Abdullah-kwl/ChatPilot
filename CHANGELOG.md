@@ -26,6 +26,14 @@ We use version format: `MAJOR.MINOR.PATCH`
 
 ---
 
+## [2.0] - 2026-05-05
+
+### Added
+
+* Chatbot is initialized
+
+---
+
 ## [1.0] - 2026-05-05
 
 ### Added
