@@ -26,7 +26,7 @@ We use version format: `MAJOR.MINOR.PATCH`
 
 ---
 
-## [1.1] - 2026-05-05
+## [1.1.0] - 2026-05-05
 
 ### Added
 
@@ -34,7 +34,7 @@ We use version format: `MAJOR.MINOR.PATCH`
 
 ---
 
-## [1.0] - 2026-05-05
+## [1.0.0] - 2026-05-05
 
 ### Added
 
