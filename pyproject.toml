@@ -5,5 +5,12 @@ description = "ChatPilot🤖 is a LangChain-powered chatbot prototype designed t
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "claude>=0.4.11",
+    "ddgs>=9.14.2",
+    "dotenv>=0.9.9",
     "langchain>=1.2.17",
+    "langchain-community>=0.4.1",
+    "langchain-groq>=1.1.2",
+    "pydantic>=2.13.3",
+    "pydantic-settings>=2.14.0",
 ]
