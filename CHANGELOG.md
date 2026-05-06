@@ -26,6 +26,15 @@ We use version format: `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.3.0] - 2026-05-06
+
+### Added
+- Built Streamlit frontend for chatbot UI
+- Integrated frontend with FastAPI backend
+- Enabled real-time chat interface with session-based memory
+
+---
+
 ## [1.2.1] - 2026-05-06
 ### Changed
 - Improved chat error handling and response stability
