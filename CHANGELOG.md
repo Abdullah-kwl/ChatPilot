@@ -26,6 +26,12 @@ We use version format: `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.2.1] - 2026-05-06
+### Changed
+- Improved chat error handling and response stability
+
+---
+
 ## [1.2.0] - 2026-05-06
 ### Added
 - Integrated FastAPI
