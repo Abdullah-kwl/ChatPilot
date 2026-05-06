@@ -8,6 +8,7 @@ dependencies = [
     "claude>=0.4.11",
     "ddgs>=9.14.2",
     "dotenv>=0.9.9",
+    "fastapi[standard]>=0.136.1",
     "langchain>=1.2.17",
     "langchain-community>=0.4.1",
     "langchain-groq>=1.1.2",
