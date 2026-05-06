@@ -9,9 +9,3 @@ agent = create_agent(
     checkpointer=InMemorySaver(),
     name="helpfull_assistant",
 )
-
-# agent_response = agent.invoke(
-#     {"messages": [{"role": "user", "content": "hi my name is bobe"}]},
-#     {"configurable": {"thread_id": "1"}},
-# )
-# print(agent_response)
