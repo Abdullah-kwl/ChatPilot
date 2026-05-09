@@ -1,6 +1,6 @@
 [project]
 name = "chatpilot"
-version = "0.1.0"
+version = "1.4.0"
 description = "ChatPilot🤖 is a LangChain-powered chatbot prototype designed to demonstrate efficient LLM orchestration."
 readme = "README.md"
 requires-python = ">=3.12"
