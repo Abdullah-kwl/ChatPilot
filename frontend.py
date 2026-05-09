@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 FASTAPI_URL = "http://localhost:8000/api/v1/chat"
-
+FASTAPI_STREAM_URL = "http://localhost:8000/api/v1/chat/stream"
 
 # SESSION STATE
 def init_session():
@@ -55,6 +55,36 @@ def get_assistant_reply(message: str, session_id: str) -> str:
     except Exception as e:
         return f"⚠️ Unexpected error: {e}"
 
+# BACKEND CALL FOR STREAMING
+def stream_assistant_reply(message: str, session_id: str):
+    try:
+        with requests.post(
+            FASTAPI_STREAM_URL,
+            json={"message": message, "session_id": session_id},
+            stream=True,
+            timeout=60,
+        ) as response:
+            response.raise_for_status()
+            buffer = ""
+            for raw_chunk in response.iter_content(chunk_size=None, decode_unicode=True):
+                buffer += raw_chunk
+                # SSE chunks are separated by \n\n
+                while "\n\n" in buffer:
+                    chunk, buffer = buffer.split("\n\n", 1)
+                    for line in chunk.splitlines():
+                        if line.startswith("data: "):
+                            content = line[6:]
+                            if content == "[DONE]":
+                                return
+                            yield content.replace("\\n", "\n")  # unescape here
+
+    except requests.exceptions.ConnectionError:
+        yield "⚠️ Backend not reachable."
+    except requests.exceptions.Timeout:
+        yield "⚠️ Request timed out."
+    except Exception as e:
+        yield f"⚠️ Unexpected error: {e}"
+
 
 # UI HEADER
 st.title("🤖 ChatPilot")
@@ -84,12 +114,19 @@ if prompt:
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        with st.spinner("Thinking..."):
-            reply = get_assistant_reply(
-                prompt,
-                st.session_state.session_id
-            )
-            st.markdown(reply)
+        # For simple response
+        # with st.spinner("Thinking..."):
+            # reply = get_assistant_reply(
+            #     prompt,
+            #     st.session_state.session_id
+            # )
+            # st.markdown(reply)
+
+            # For streaming response
+            reply = st.write_stream(
+            stream_assistant_reply(prompt, st.session_state.session_id)
+        )
+
 
     st.session_state.messages.append(
         {"role": "assistant", "content": reply}
@@ -108,3 +145,5 @@ with st.sidebar:
     st.divider()
     st.markdown("**Backend:** `localhost:8000`")
     st.markdown("**Model:** LangChain Agent")
+
+# uv run streamlit run frontend.py
