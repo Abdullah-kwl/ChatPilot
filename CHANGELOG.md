@@ -26,6 +26,16 @@ We use version format: `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.4.0] - 2026-05-09
+
+### Added
+- Added support for streaming.
+- Reduced latency during processing.
+- Smoother and more intuitive user experience.
+- General code optimization and stability improvements.
+
+---
+
 ## [1.3.0] - 2026-05-06
 
 ### Added
